@@ -15,8 +15,8 @@ Ext.require(['HL.view.Viewport','HL.model.Container','HL.model.Task']);
 
 Ext.application({
     name: 'HL',
-    db: 'hublist',
-    version: '0.7.0',
+    db: /\/(\w+)\//.exec(window.location)[1] || 'hublist',
+    version: '0.7.1',
     autoCreateViewport: false,
     appFolder: 'app',
     
@@ -26,6 +26,7 @@ Ext.application({
     events: ['folderselect','listselect'],
     
     launch: function() {
+        var pause = '';
         HL.app = this;
         Ext.create('HL.view.Viewport');
         this.updateCheck();
@@ -97,8 +98,11 @@ Ext.application({
     
     },
     
-    // checks to see if your using the latest version
-    // of Hub List. Also passes along helpful platform info.
+    /**
+     * @private
+     * checks to see if your using the latest version
+     * of Hub List. Also passes along helpful platform info.
+     */
     updateCheck: function() {
         var me = this;
         var payload = {};

@@ -1,3 +1,9 @@
+/**
+ * @class HL.view.Viewport
+ * @extends Ext.container.Viewport
+ * 
+ * Main application Viewport.
+ */
 Ext.define('HL.view.Viewport', {
     requires: ['HL.view.container.Tree','HL.view.task.Tree'],
     
@@ -26,6 +32,11 @@ Ext.define('HL.view.Viewport', {
         }],                        
     },
     
+    /**
+     * Initializes config overrides
+     * and calls parent constructor.
+     * @param {Object} config configuration object
+     */
     constructor: function(config) {
         this.initConfig(config);
                 

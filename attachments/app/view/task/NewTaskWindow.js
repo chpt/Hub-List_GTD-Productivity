@@ -1,3 +1,9 @@
+/**
+ * @class HL.view.container.NewTaskWindow
+ * @extends Ext.form.Panel
+ * 
+ * Displays add/edit Container window.
+ */
 Ext.define('HL.view.task.NewTaskWindow', {
     extend: 'Ext.form.Panel',
     alias: 'widget.newtaskwindow',
@@ -42,6 +48,10 @@ Ext.define('HL.view.task.NewTaskWindow', {
         },{
             xtype: 'button',
             text: 'Save',
+            /**
+             * Make sure the form is valid before updating
+             * and syncing with the data store.
+             */            
             handler: function() {
                 var form = this.up('form').getForm();
                 if(form.isValid()) {

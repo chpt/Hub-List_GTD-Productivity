@@ -1,5 +1,5 @@
 # Hub List
-Hub List is an [open source GTD style productivity app](http://hublistapp.com) written entirely in JavaScript using [Ext JS 4](http://www.sencha.com/products/extjs/). It's a [CouchApp](http://couchapp.org/page/what-is-couchapp) which means it can be served directly from any CouchDB instance without the need for a seperate server side application stack!
+Hub List is an [open source GTD style productivity app](http://hublistapp.com) written entirely in JavaScript using [Ext JS 4](http://www.sencha.com/products/extjs/). It's a [CouchApp](http://couchapp.org/page/what-is-couchapp) which means it can be served directly from any CouchDB instance without the need for a separate server side application stack!
 
 ![Screenshots](http://dl.dropbox.com/u/946636/HL-Readme-Screnshots.png)
 
@@ -17,7 +17,7 @@ To start using Hub List you'll need these tools to push the application code int
 - [node.couchapp.js](https://github.com/mikeal/node.couchapp.js)
 
 ## Installing Hub List
-1. Create a database named hublist on your instance of CouchDB. To use a different database name just change the db config value in app.js.  
+1. Create a database on your instance of CouchDB. You can name the database anything.
 ```
 curl -X PUT http://127.0.0.1:5984/hublist
 ``` 

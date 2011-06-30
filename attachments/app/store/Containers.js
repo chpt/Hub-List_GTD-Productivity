@@ -1,3 +1,7 @@
+/**
+ * @class HL.store.Containers
+ * @extends Ext.data.TreeStore
+ */
 Ext.define('HL.store.Containers', {
     extend: 'Ext.data.TreeStore',
     autoLoad: false,
@@ -13,6 +17,10 @@ Ext.define('HL.store.Containers', {
     },
     nodeParam: 'key',
     
+    constructor: function() {
+        return this.callParent(arguments);
+    },
+    
     listeners: {
         move: function(tree, node, oldParent, newParent, index, options) {
             var updatedRecords = this.getUpdatedRecords();
@@ -20,14 +28,11 @@ Ext.define('HL.store.Containers', {
                 this.sync();
             }
         },
-        remove: function(tree, parentNode, node, options) {
-            var updatedRecs = Ext.data.StoreManager.lookup('containersStore').getUpdatedRecords();
-        },
-        update: function(store, record, operation) {
-            var updatedRecs = store.getUpdatedRecords();
-            var rawRecs = operation.records;
-            var opsRecs = operation.getRecords();
-        },        
+        /**
+         * Makes sure records are not left marked as dirty
+         * when a child record or the root record is updated
+         * with data returned from the server.
+         */        
         write: function(store, operation) {
             var updatedRecs = store.getUpdatedRecords();
             var opsRecs = operation.getRecords();

@@ -1,3 +1,7 @@
+/**
+ * @class HL.proxy.Container
+ * @extends Ext.data.proxy.Rest
+ */
 Ext.define('HL.proxy.Container', {
     extend: 'Ext.data.proxy.Rest',
     alias: 'proxy.container',
@@ -14,10 +18,10 @@ Ext.define('HL.proxy.Container', {
     batchActions: false, // TODO: make this friendly with couchdb _bulk_docs feature
     url: '/',
             
-    beforerequest: function(connection, options) {
-        var pause = '';
-    },
-    
+    /**
+     * Calls parent contstructor
+     * @param {Object} config configuration object
+     */    
     constructor: function(config) {
         var me = this;
         
@@ -25,6 +29,14 @@ Ext.define('HL.proxy.Container', {
         me.callParent([config]);
     },
     
+    /**
+     * Makes sure blank _rev field is not
+     * passed to CouchDB. Sets the
+     * create URL value dynamically.
+     * @param {Ext.data.Operation} operation
+     * @param {Ext.data.Proxy} proxy
+     * @param {Ext.data.Store} store          
+     */
     create: function(operation, proxy, store) {
         var record = operation.records[0];
         if(record.data._rev === null) {
@@ -37,6 +49,13 @@ Ext.define('HL.proxy.Container', {
         return this.doRequest.apply(this, arguments);
     },
     
+    /**
+     * JSON encodes operation.params.key.
+     * Sets the read URL value dynamically.
+     * @param {Ext.data.Operation} operation
+     * @param {Ext.data.Proxy} proxy
+     * @param {Ext.data.Store} store          
+     */    
     read: function(operation, proxy, store) {
         // work-around for api object getting clobbered when extending a proxy
         this.api.read = '/' + HL.app.db + '/_design/app/_view/containers';
@@ -47,6 +66,14 @@ Ext.define('HL.proxy.Container', {
         return this.doRequest.apply(this, arguments);
     },
     
+    /**
+     * Makes sure blank _rev field is
+     * not passed to CouchDB. Sets the
+     * update URL value dynamically.
+     * @param {Ext.data.Operation} operation
+     * @param {Ext.data.Proxy} proxy
+     * @param {Ext.data.Store} store          
+     */    
     update: function(operation, proxy, store) {
         var record = operation.records[0];
         this.api.update = '/' + HL.app.db + '/';
@@ -59,7 +86,13 @@ Ext.define('HL.proxy.Container', {
         }
         return this.doRequest.apply(this, arguments);
     },
-    
+
+    /**
+     * Sets the destroy URL value dynamically.
+     * @param {Ext.data.Operation} operation
+     * @param {Ext.data.Proxy} proxy
+     * @param {Ext.data.Store} store          
+     */    
     destroy: function(operation, proxy, store) {
         this.api.destroy = '/' + HL.app.db + '/';
         return this.doRequest.apply(this, arguments);
@@ -73,6 +106,15 @@ Ext.define('HL.proxy.Container', {
         //totalProperty: 'total_rows', // can't use this without factoring in offset from couch            
     },
     
+    /**
+     * @private
+     * Loops through passed in nodeIds and
+     * assembles flat JSON response data into the
+     * hierarchial format expected by the reader.
+     * @param {Array} nodeIds ids of model records in response data
+     * @param {Object} hierarchy transformed JSON response data
+     * @param {Object} original JSON response data
+     */
     buildHierarchyFromJson: function(nodeIds, hierarchy, allNodes) {
         var me = this;
         var recordKey = me.reader.record;
@@ -93,8 +135,13 @@ Ext.define('HL.proxy.Container', {
         }, me);
     },
     
-    // add child nodes back as children records formatted the way
-    // the reader is expecting, using data from childNodes
+    /**
+     * @private
+     * Adds child nodes back to response data as children records
+     * formatted the way the reader is expecting.
+     * @param {Record} formattedRecord correctly formatted response data
+     * @param {Record} existingRecord updated record from data operation
+     */
     buildHierarchyFromRecords: function(formattedRecord, existingRecord) {
         var me = this;
         
@@ -114,6 +161,10 @@ Ext.define('HL.proxy.Container', {
         }); 
     },
     
+    /**
+     * @private
+     * Simple wrapper around JavaScript filter object method.
+     */
     itemByObjKeyVal: function(haystack, key, val) {
         var items = haystack.filter(function(item, index, allItems) {
             if(item[key] === val) {
@@ -126,6 +177,13 @@ Ext.define('HL.proxy.Container', {
         return items[0];
     },
     
+    /**
+     * Overrides default proxy extractResponseData
+     * method to transform flat response JSON into
+     * correctly formatted hierarchial data that is 
+     * expected by the reader.
+     * @param {Object} response raw JSON response data
+     */
     extractResponseData: function(response) {            
         var rawData = this.reader.getResponseData(response);
 

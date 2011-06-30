@@ -9,6 +9,14 @@ Ext.define('HL.view.container.dd.ViewDragZone', {
         return true;
     },
     
+    /**
+     * @private
+     * Makes sure folders and lists cannot be dropped
+     * onto lists.
+     * @param {Ext.dd.DragDrop} target The drop target
+     * @param {Event} e The event object
+     * @param {String} id The id of the dragged element
+     */
     beforeDragOver: function(target, e, id) {
         var overRecord = null;
         var node = e.getTarget(target.view.getItemSelector());

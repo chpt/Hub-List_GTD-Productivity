@@ -1,3 +1,9 @@
+/**
+ * @class HL.view.task.Tree
+ * @extends Ext.tree.Panel
+ * 
+ * Task tree panel.
+ */
 Ext.define('HL.view.task.Tree', {
     requires: ['HL.store.Tasks', 'HL.view.task.NewTaskWindow'],
     
@@ -13,6 +19,7 @@ Ext.define('HL.view.task.Tree', {
         displayField: 'name',
         lines: false,
         useArrows: true,
+        store: 'tasksStore',
         dockedItems: [{
             xtype: 'toolbar',
             dock: 'bottom',
@@ -30,23 +37,31 @@ Ext.define('HL.view.task.Tree', {
             ddGroup: 'tasks',
             allowParentInsert: true
         }
-    },    
-    
+    },
+     
+    /**
+     * Initializes config overrides
+     * and calls parent constructor.
+     * @param {Object} config configuration object
+     */      
     constructor: function(config) {
         this.initConfig(config);      
         return this.callParent(arguments);
     },
-
+    
+    /**
+     * @private
+     * Creates the data store for the Tree using
+     * the selected Container as the root if it's been set
+     * as the (rootList) when this Tree was created.
+     */
     initComponent: function() {       
-        if(this.rootList) {
-            this.rootList.data.loaded = false;
-            this.rootList.data.expanded = true;
-            this.store = Ext.create('HL.store.Tasks', {root: this.rootList});
-        } else {
-            this.store = Ext.create('HL.store.Tasks');
-        }   
-
-        this.callParent(arguments);
+        var me = this;
+        me.title = me.store.getRootNode().get('name');
+        me.store.getRootNode().on('namemodified', function(model, newValue, oldValue) {
+            me.setTitle(newValue);
+        });
+        me.callParent(arguments);
     } 
     
     

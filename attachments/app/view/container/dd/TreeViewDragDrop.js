@@ -1,11 +1,15 @@
+/**
+ * Extends {@link Ext.tree.plugin.TreeViewDragDrop} so
+ * we can use {@link HL.view.container.dd.ViewDragZone}
+ * and {@link HL.view.container.dd.ViewDropZone} to have
+ * greater control over {@link HL.view.container.Tree}
+ * drag and drop operations.
+ */
 Ext.define('HL.view.container.dd.TreeViewDragDrop', {
     extend: 'Ext.tree.plugin.TreeViewDragDrop',
     alias: 'plugin.ctreeviewdragdrop',
 
-    uses: [
-        'HL.view.container.dd.ViewDragZone',
-        'HL.view.container.dd.ViewDropZone'
-    ],
+    uses: ['HL.view.container.dd.ViewDragZone','HL.view.container.dd.ViewDropZone'],
     
     onViewRender : function(view) {
         var me = this;

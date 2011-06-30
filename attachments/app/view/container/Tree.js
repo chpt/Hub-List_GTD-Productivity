@@ -1,3 +1,9 @@
+/**
+ * @class HL.view.container.Tree
+ * @extends Ext.tree.Panel
+ * 
+ * Container tree panel.
+ */
 Ext.define('HL.view.container.Tree', {
     requires: ['HL.store.Containers', 'HL.view.container.NewContainerWindow', 'HL.view.container.dd.TreeViewDragDrop'],
 
@@ -23,11 +29,6 @@ Ext.define('HL.view.container.Tree', {
             }]
         }],
         listeners: {
-            itemmove: function(node, oldParent, newParent, newIndex, options) {
-                var containerStore = this.getStore();
-                var upRecs = containerStore.getUpdatedRecords();
-                var pause = '';
-            },
             load: function(store, record, records, success, options) {
                 // this is a temporary solution to select the first
                 // list in the tree, eventually we'll select whatever
@@ -56,16 +57,28 @@ Ext.define('HL.view.container.Tree', {
         }
     },
     
+    /**
+     * Initializes config overrides
+     * and calls parent constructor.
+     *
+     * Includes a work-around to relay the
+     * update event from Ext.data.NodeStore to
+     * HL.store.Containers.
+     * @param {Object} config configuration object
+     */    
     constructor: function(config) {
-        this.initConfig(config);      
-        return this.callParent(arguments);
-    },
-
-    initComponent: function() {       
         this.store = Ext.create('HL.store.Containers');
-        this.callParent(arguments);
+        this.initConfig(config);      
+        var result = this.callParent(arguments);
+        var nodeStore = this.getView().getStore();
+        this.getStore().relayEvents(nodeStore, ['update']);
+        return result;
     },
-    
+        
+    /**
+     * Selects the first node in the Tree.
+     * @param {Ext.data.NodeInterface} startNode
+     */
     selectFirstList: function(startNode) {
         var me = this;
         startNode = startNode || me.getStore().getRootNode();

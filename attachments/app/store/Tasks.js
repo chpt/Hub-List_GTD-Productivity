@@ -1,3 +1,7 @@
+/**
+ * @class HL.store.Tasks
+ * @extends Ext.data.TreeStore
+ */
 Ext.define('HL.store.Tasks', {
     extend: 'Ext.data.TreeStore',
     autoLoad: false,
@@ -5,17 +9,14 @@ Ext.define('HL.store.Tasks', {
     id: 'tasksStore',       
          
     model: 'HL.model.Task',
-    root: {
-        leaf: true, // initial loading of data only works when this is true (might be a bug?)
-        expanded: true, // needed for initial data loading (seems counter intuitive)
-        parentId: null
-    },
     nodeParam: 'key',
     
     listeners: {
-        beforesync: function(records, options) {
+        append: function(tree, node, index, options) {
+            var updatedRecords = this.getUpdatedRecords();
             var pause = '';
         },
+                
         datachanged: function(store, options) {
             var updatedRecs = store.getUpdatedRecords();
             updatedRecs.forEach(function(rec, index, allItems) {
@@ -26,28 +27,63 @@ Ext.define('HL.store.Tasks', {
             });
             var pause = '';
         },
-        load: function(store, records, success, options) {
-            var pause = '';
-        },
+
         move: function(tree, node, oldParent, newParent, index, options) {
             var updatedRecords = this.getUpdatedRecords();
             if(updatedRecords && updatedRecords.length > 0) {
                 this.sync();
             }
         },
+        
         remove: function(tree, parentNode, node, options) {
             var updatedRecs = Ext.data.StoreManager.lookup('tasksStore').getUpdatedRecords();
             var pause = '';
         },
+        
         rootchange: function(record, options) {
             HL.app.getController('HL.controller.Tasks').updateTaskTreeTitle();
         },
+        
         update: function(store, record, operation) {
             var updatedRecs = store.getUpdatedRecords();
             var rawRecs = operation.records;
             var opsRecs = operation.getRecords();
             var pause = '';
-        },        
+        },
+                
+        /**
+         * Called before a node is expanded.
+         * @private
+         * @param {Ext.data.NodeInterface} node The node being expanded.
+         * @param {Function} callback The function to run after the expand finishes
+         * @param {Object} scope The scope in which to run the callback function
+         */
+        onBeforeNodeExpand: function(node, callback, scope) {
+            if (node.isLoaded()) {
+                Ext.callback(callback, scope || node, [node.childNodes]);
+            }
+            else if (node.isLoading()) {
+                this.on('load', function() {
+                    Ext.callback(callback, scope || node, [node.childNodes]);
+                }, this, {single: true});
+            }
+            /*
+            else {
+                this.read({
+                    node: node,
+                    callback: function() {
+                        Ext.callback(callback, scope || node, [node.childNodes]);
+                    }
+                });            
+            }
+            */
+        },                
+     
+        /**
+         * Makes sure records are not left marked as dirty
+         * when a child record or the root record is updated
+         * with data returned from the server.
+         */         
         write: function(store, operation) {
             var updatedRecs = store.getUpdatedRecords();
             var opsRecs = operation.getRecords();
