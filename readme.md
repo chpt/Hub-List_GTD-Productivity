@@ -38,6 +38,17 @@ couchapp push couchapp.js http://127.0.0.1:5984/hublist
 http://127.0.0.1:5984/hublist/index.html
 ```
 
+## Upgrading Hub List
+1. Pull the latest changes
+```
+cd Hub-List  
+git pull  
+````
+
+2. push the updated code into your database
+```
+couchapp push couchapp.js http://127.0.0.1:5984/hublist 
+```
 
 ## Wishlist
 - Distribute CouchApps as native desktop applications.
@@ -51,8 +62,8 @@ Contributions are welcome! To contribute code or design simply fork this repo an
 The Hub List source is available under an open source or commercial license. The open source license is the [GPL v3 License](http://opensource.org/licenses/gpl-3.0.html). A commercial license is available for those interested in including Hub List source code in non-open source applications. Please [get in touch](http://twitter.com/#!/hublistapp) for more information on the commercial license.
 
 ## Links
+[API Documentation - http://apidocs.hublistapp.com](http://apidocs.hublistapp.com) (powered by [JSDuck](https://github.com/nene/jsduck)) 
 [Main Website - http://hublistapp.com](http://hublistapp.com)  
 [Development Blog - http://hublistapp.com/blog](http://hublistapp.com/blog)  
-[End User Support & Feature Requests](http://getsatisfaction.com/nimbleapps)  
-API Documentation - Coming Soon (powered by [JSDuck](https://github.com/nene/jsduck))  
+[End User Support & Feature Requests](http://getsatisfaction.com/nimbleapps)   
 Twitter [@hublistapp](http://twitter.com/#!/hublistapp)  
