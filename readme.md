@@ -17,7 +17,7 @@ To start using Hub List you'll need these tools to push the application code int
 - [node.couchapp.js](https://github.com/mikeal/node.couchapp.js)
 
 ## Installing Hub List
-1. Create a database on your instance of CouchDB. You can name the database anything.
+1. Create a database on your instance of CouchDB. You can name the database anything.  
 ```
 curl -X PUT http://127.0.0.1:5984/hublist
 ``` 
@@ -29,7 +29,9 @@ git clone  https://github.com/rawberg/Hub-List_GTD-Productivity Hub-List
 
 3. push the code into the database you created (requires [node.couchapp.js](https://github.com/mikeal/node.couchapp.js))  
 ```
-cd Hub-List  
+cd Hub-List
+```
+```
 couchapp push couchapp.js http://127.0.0.1:5984/hublist 
 ```
 
@@ -41,7 +43,9 @@ http://127.0.0.1:5984/hublist/index.html
 ## Upgrading Hub List
 1. Pull the latest changes  
 ```
-cd Hub-List    
+cd Hub-List 
+```
+```   
 git pull  
 ```
 
