@@ -30,7 +30,7 @@ git clone  https://github.com/rawberg/Hub-List_GTD-Productivity Hub-List
 3. push the code into the database you created (requires [node.couchapp.js](https://github.com/mikeal/node.couchapp.js))  
 ```
 cd Hub-List
-```
+```  
 ```
 couchapp push couchapp.js http://127.0.0.1:5984/hublist 
 ```
@@ -44,7 +44,7 @@ http://127.0.0.1:5984/hublist/index.html
 1. Pull the latest changes  
 ```
 cd Hub-List 
-```
+```  
 ```   
 git pull  
 ```
