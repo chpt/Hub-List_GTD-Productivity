@@ -37,7 +37,7 @@ couchapp push couchapp.js http://127.0.0.1:5984/hublist
 
 4. open the index.html file in your browser and enjoy!  
 ```
-http://127.0.0.1:5984/hublist/index.html
+http://127.0.0.1:5984/hublist/_design/app/index.html
 ```
 
 ## Upgrading Hub List
