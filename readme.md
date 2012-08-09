@@ -7,7 +7,7 @@ Hub List is an [open source GTD style productivity app](http://hublistapp.com) w
 The app is currently under heavy development and not ready for situations where data loss will ruin your day. I'm in the process of replicating the functionality from the previous version of Hub List which was built with Ext JS 3.x. As soon as the core functionality is complete the app will be ready for everyday use. The first screenshot is what the app currently looks like. The second and third screenshots are where it's headed.
 
 ## App Requirements
-- [CouchDB](http://www.couchbase.com/downloads) (1.1+)
+- [CouchDB](http://couchdb.apache.org) (1.1+)
 - A modern web browser
 
 ## Deployment Requirements
