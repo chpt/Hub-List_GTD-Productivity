@@ -4,7 +4,7 @@ Hub List is an [open source GTD style productivity app](http://hublistapp.com) w
 ![Screenshots](http://dl.dropbox.com/u/946636/HL-Readme-Screnshots.png)
 
 ## Status
-The app is currently under heavy development and not ready for situations where data loss will ruin your day. I'm in the process of replicating the functionality from the previous version of Hub List which was built with Ext JS 3.x. As soon as the core functionality is complete the app will be ready for everyday use. The first screenshot is what the app currently looks like. The second and third screenshots are where it's headed.
+Hub List is no longer actively being developed. I currently don't have time to continue work on this project. I'm still interested in building a lightweight productivity app that provides a single view of tasks spread across different services like Pivotal Tracker, Jira and Basecamp.
 
 ## App Requirements
 - [CouchDB](http://www.couchbase.com/downloads) (1.1+)
@@ -67,7 +67,4 @@ The Hub List source is available under an open source or commercial license. The
 
 ## Links
 [API Documentation - http://apidocs.hublistapp.com](http://apidocs.hublistapp.com) (powered by [JSDuck](https://github.com/nene/jsduck))   
-[Main Website - http://hublistapp.com](http://hublistapp.com)  
-[Development Blog - http://hublistapp.com/blog](http://hublistapp.com/blog)  
-[End User Support & Feature Requests](http://getsatisfaction.com/nimbleapps)   
-Twitter [@hublistapp](http://twitter.com/#!/hublistapp)  
+[Main Website - http://hublistapp.com](http://hublistapp.com)    
