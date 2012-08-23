@@ -8,7 +8,7 @@ Hub List is an [open source GTD style productivity app](http://hublistapp.com) w
 
 
 ## App Requirements
-- [CouchDB](http://www.couchbase.com/downloads) (1.1+)
+- [CouchDB](http://couchdb.apache.org) (1.1+)
 - A modern web browser
 
 ## Deployment Requirements
