@@ -4,7 +4,8 @@ Hub List is an [open source GTD style productivity app](http://hublistapp.com) w
 ![Screenshots](http://dl.dropbox.com/u/946636/HL-Readme-Screnshots.png)
 
 ## Status
-Hub List is no longer actively being developed. I currently don't have time to continue work on this project. I'm still interested in building a lightweight productivity app that provides a single view of tasks spread across different services like Pivotal Tracker, Jira and Basecamp.
+**Hub List is no longer actively being developed. I currently don't have time to continue work on this project. I'm still interested in building a lightweight productivity app that provides a single view of tasks spread across different services like Pivotal Tracker, Jira and Basecamp.**
+
 
 ## App Requirements
 - [CouchDB](http://www.couchbase.com/downloads) (1.1+)
