@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Hub List</title>
+  <meta name="description" content="Open source GTD style productivity as a CouchApp written entirely in Ext JS 4.">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Hub List</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Open source GTD style productivity as a CouchApp written entirely in Ext JS 4.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/rawberg/Hub-List_GTD-Productivity/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/rawberg/Hub-List_GTD-Productivity/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/rawberg/Hub-List_GTD-Productivity" class="code">View Hub List on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Hub List</h1>
+
+<p>Hub List is an <a href="http://hublistapp.com">open source GTD style productivity app</a> written entirely in JavaScript using <a href="http://www.sencha.com/products/extjs/">Ext JS 4</a>. It's a <a href="http://couchapp.org/page/what-is-couchapp">CouchApp</a> which means it can be served directly from any CouchDB instance without the need for a separate server side application stack!</p>
+
+<p><img src="http://dl.dropbox.com/u/946636/HL-Readme-Screnshots.png" alt="Screenshots"></p>
+
+<h2>Status</h2>
+
+<p>The app is currently under heavy development and not ready for situations where data loss will ruin your day. I'm in the process of replicating the functionality from the previous version of Hub List which was built with Ext JS 3.x. As soon as the core functionality is complete the app will be ready for everyday use. The first screenshot is what the app currently looks like. The second and third screenshots are where it's headed.</p>
+
+<h2>App Requirements</h2>
+
+<ul>
+<li>
+<a href="http://www.couchbase.com/downloads">CouchDB</a> (1.1+)</li>
+<li>A modern web browser</li>
+</ul><h2>Deployment Requirements</h2>
+
+<p>To start using Hub List you'll need these tools to push the application code into an instance of CouchDB. These don't have be installed on the same machine as your CouchDB instance as long as they can access the CouchDB instance where you want Hub List installed.</p>
+
+<ul>
+<li>
+<a href="https://github.com/joyent/node">NodeJS</a> (0.4.0+)</li>
+<li><a href="https://github.com/mikeal/node.couchapp.js">node.couchapp.js</a></li>
+</ul><h2>Installing Hub List</h2>
+
+<ol>
+<li>
+<p>Create a database on your instance of CouchDB. You can name the database anything.  </p>
+
+<pre><code>curl -X PUT http://127.0.0.1:5984/hublist
+</code></pre>
+</li>
+<li>
+<p>clone this repo  </p>
+
+<pre><code>git clone  https://github.com/rawberg/Hub-List_GTD-Productivity Hub-List
+</code></pre>
+</li>
+<li>
+<p>push the code into the database you created (requires <a href="https://github.com/mikeal/node.couchapp.js">node.couchapp.js</a>)  </p>
+
+<pre><code>cd Hub-List
+</code></pre>
+
+<pre><code>couchapp push couchapp.js http://127.0.0.1:5984/hublist 
+</code></pre>
+</li>
+<li>
+<p>open the index.html file in your browser and enjoy!  </p>
+
+<pre><code>http://127.0.0.1:5984/hublist/_design/app/index.html
+</code></pre>
+</li>
+</ol><h2>Upgrading Hub List</h2>
+
+<ol>
+<li>
+<p>Pull the latest changes  </p>
+
+<pre><code>cd Hub-List 
+</code></pre>
+
+<pre><code>git pull  
+</code></pre>
+</li>
+<li>
+<p>push the updated code into your database  </p>
+
+<pre><code>couchapp push couchapp.js http://127.0.0.1:5984/hublist 
+</code></pre>
+</li>
+</ol><h2>Wishlist</h2>
+
+<ul>
+<li>Distribute CouchApps as native desktop applications.</li>
+</ul><p>I'd love to distribute native desktop versions of Hub List for Mac, Windows and Linux. If anyone has experience or a desire to hack the CouchDB source code and existing platform intallers so desktop versions of CouchDB could immediately launch into a CouchApp, let me know.</p>
+
+<h2>Developer Contributions &amp; Discussion</h2>
+
+<p>Contributions are welcome! To contribute code or design simply fork this repo and initiate a pull request when you're ready to merge. For best results get in touch via twitter <a href="http://twitter.com/#!/hublistapp">@hublistapp</a> with questions. </p>
+
+<h2>License</h2>
+
+<p>The Hub List source is available under an open source or commercial license. The open source license is the <a href="http://opensource.org/licenses/gpl-3.0.html">GPL v3 License</a>. A commercial license is available for those interested in including Hub List source code in non-open source applications. Please <a href="http://twitter.com/#!/hublistapp">get in touch</a> for more information on the commercial license.</p>
+
+<h2>Links</h2>
+
+<p><a href="http://apidocs.hublistapp.com">API Documentation - http://apidocs.hublistapp.com</a> (powered by <a href="https://github.com/nene/jsduck">JSDuck</a>)<br><a href="http://hublistapp.com">Main Website - http://hublistapp.com</a><br><a href="http://hublistapp.com/blog">Development Blog - http://hublistapp.com/blog</a><br><a href="http://getsatisfaction.com/nimbleapps">End User Support &amp; Feature Requests</a><br>
+Twitter <a href="http://twitter.com/#!/hublistapp">@hublistapp</a>  </p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/rawberg" class="avatar"><img src="https://secure.gravatar.com/avatar/edd56389d0046403639a31bf839957af?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/rawberg">rawberg</a> maintains <a href="https://github.com/rawberg/Hub-List_GTD-Productivity">Hub List</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/rawberg/Hub-List_GTD-Productivity/tarball/master" class="tar">tar</a><a href="https://github.com/rawberg/Hub-List_GTD-Productivity/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
